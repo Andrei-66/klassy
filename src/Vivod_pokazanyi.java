@@ -49,6 +49,7 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener  {
         setSize(700,200);
         pnl.add(new Label(" Показания счетчика"));
 
+
         grid.add( btn1);
         grid.add(box1);
         grid.add(btn1);
@@ -56,8 +57,10 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener  {
         grid.add(btn2);
 
         contantPane.add("North",pnl);
+        contantPane.add("South", lbl1);
         contantPane.add("Center", grid);
-        contantPane.add("South",lbl1 );
+
+
 
         setVisible(true);
 
