@@ -6,6 +6,8 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import static java.awt.Label.RIGHT;
+
 
 public class Vivod_pokazanyi extends JFrame implements ActionListener  {
     Container contantPane=getContentPane();
@@ -17,9 +19,11 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener  {
     JButton btn1=new JButton("Внести покзания");
     JButton btn2=new JButton("Вывести показания");
     JLabel lbl=new JLabel("Выберете дату для ");
+
     JLabel lbl_1=new JLabel(" внесения показаний");
     JLabel lbl1=new JLabel();
     JLabel lbl_2=new JLabel("Внесите показания счетчика");
+    Font font=new Font(null,Font.BOLD,20);
 
     String[] month={"январь","февраль","март","апрель","май","июнь","июль",
             "август","сентябрь","октябрь","ноябрь","декабрь"};
@@ -81,6 +85,10 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener  {
 
 
         lbl.setOpaque(true);
+        lbl.setAlignmentX(CENTER_ALIGNMENT);
+        lbl.setFont(font);
+
+
 
         btn1.addActionListener(this);
         btn2.addActionListener(this);
@@ -111,8 +119,6 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener  {
 
         grid.add(field);
 
-
-
         grid.add(box1);
         grid.add(box2);
 
@@ -129,19 +135,12 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener  {
 
         setVisible(true);
 
-
-
-
-
-
-
-
-
     }
+
 
     public void actionPerformed(ActionEvent event){
 
-        String file="E:\\data\\data.txt";
+        String file="F:\\data\\data.txt";
         String   line2=(String)box1.getSelectedItem();
         String line3=(String)box2.getSelectedItem();
         String line1=(String)field.getText();
@@ -155,8 +154,6 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener  {
                 BufferedWriter bufferW=new BufferedWriter(fileW);
                 bufferW.write(line_sum);
                 bufferW.close();
-
-
 
             }
 
