@@ -7,19 +7,26 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
-public class Vivod_pokazanyi extends JFrame implements ActionListener  {
+public class Vivod_pokazanyi extends JFrame implements ActionListener
+{
+
+
     Container contantPane=getContentPane();
 
     JPanel pnl=new JPanel();
 
     JPanel grid=new JPanel(new GridLayout(6,3));
     JTextField field=new JTextField(12);
-    JButton btn1=new JButton("Внести покзания");
+    JButton btn1=new JButton("Сохранить показания");
     JButton btn2=new JButton("Вывести показания");
-    JLabel lbl=new JLabel("Выберете дату для ");
-    JLabel lbl_1=new JLabel(" внесения показаний");
+    JLabel lbl=new JLabel("Выберете дату для  внесения показаний");
+    JLabel lbl_1=new JLabel(" Выберете дату показаний для вывода");
     JLabel lbl1=new JLabel();
-    JLabel lbl_2=new JLabel("Внесите показания счетчика");
+    JLabel lbl_2=new JLabel("Введите показания счетчика");
+    JLabel lbl_3=new JLabel(" Нажмите \"вывести\" для просмотра ");
+    Font font=new Font("Serif",Font.BOLD,24);
+    Font font1=new Font("Serif",Font.ITALIC,22);
+
 
     String[] month={"январь","февраль","март","апрель","май","июнь","июль",
             "август","сентябрь","октябрь","ноябрь","декабрь"};
@@ -73,13 +80,26 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener  {
     JComboBox<String> box4=new JComboBox<String>(years1);
 
 
-
-
     Vivod_pokazanyi(){
         super("Окно Swing");
         setSize(1000,500);
 
+        lbl.setHorizontalAlignment(JLabel.CENTER);
+        lbl.setFont(font);
 
+        lbl_1.setHorizontalAlignment(JLabel.CENTER);
+        lbl_1.setFont(font1);
+
+        lbl1.setHorizontalAlignment(JLabel.CENTER);
+        lbl1.setFont(font1);
+
+        lbl_2.setHorizontalAlignment(JLabel.CENTER);
+        lbl_2.setFont(font);
+
+        lbl_3.setHorizontalAlignment(JLabel.CENTER);
+        lbl_3.setFont(font1);
+
+        box1.setAlignmentX(CENTER_ALIGNMENT);
         lbl.setOpaque(true);
 
         btn1.addActionListener(this);
@@ -91,6 +111,7 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener  {
         pnl.add(lbl);
         pnl.add(lbl_1);
         pnl.add(lbl_2);
+        pnl.add(lbl_3);
 
         pnl.add(lbl1);
         pnl.add(field);
@@ -98,107 +119,103 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener  {
         pnl.add(btn1);
         pnl.add(btn2);
 
-
-        pnl.add(box1);
         pnl.add(box2);
         pnl.add(box3);
         pnl.add(box4);
 
-
         grid.add(lbl);
-        grid.add(lbl_1);
         grid.add(lbl_2);
 
-        grid.add(field);
-
-
-
         grid.add(box1);
+        grid.add(field);
         grid.add(box2);
-
-        grid.add(box3);
-        grid.add(box4);
-
         grid.add(btn1);
+
+        grid.add(lbl_1);
+        grid.add(lbl_3);
+        grid.add(box3);
         grid.add(btn2);
 
+
+        grid.add(box4);
+
         grid.add(lbl1);
+
 
         contantPane.add(grid);
 
 
+
+
         setVisible(true);
-
-
-
-
-
-
-
-
 
     }
 
     public void actionPerformed(ActionEvent event){
 
         String file="E:\\data\\data.txt";
-        String   line2=(String)box1.getSelectedItem();
-        String line3=(String)box2.getSelectedItem();
-        String line1=(String)field.getText();
-        String line_sum=(String)"\n"+line2+" "+line3+" "+line1;
+        String   line2=(String)box1.getSelectedItem();//Выбор месяца
+        String line3=(String)box2.getSelectedItem();//Выбор года
+        String line1=(String)field.getText();       //строка вводимая пользователем
+        String line_sum=(String)"\n"+line2+" "+line3+" "+line1;//строка месяц, год, показания
 
 
         if(event.getSource()==btn1){
+            int dlina_stroki=field.getText().length();
 
-            try{
-                FileWriter fileW=new FileWriter(file, true);
-                BufferedWriter bufferW=new BufferedWriter(fileW);
-                bufferW.write(line_sum);
-                bufferW.close();
+            if(dlina_stroki<1)
+            {JOptionPane.showMessageDialog(null,"Введите показания счетчика!"); }
 
+            else{
 
+                try {
+                    FileWriter fileW = new FileWriter(file, true);
+                    BufferedWriter bufferW = new BufferedWriter(fileW);
+                    bufferW.write(line_sum);
+                    bufferW.close();
+                }
+                catch (IOException e) {
+                    System.out.println("ошибка записи файла!");
 
-            }
-
-            catch (IOException e){
-                System.out.println("ошибка записи файла!");
+                }
 
             }
 
         }
 
         if(event.getSource()==btn2){
-            String   line4=(String)box3.getSelectedItem();
-            String line5=(String)box4.getSelectedItem();
 
-            String line_sum1=line4+" "+line5;
-            System.out.println(line_sum);
+        System.out.println(line_sum);}
 
-            try{
-                String line="";
-                FileReader data=new FileReader(file);
-                BufferedReader buffer=new BufferedReader(data);
+        try {
+            String line = "";
+            FileReader data = new FileReader(file);
+            BufferedReader buffer = new BufferedReader(data);
 
-                while ((line=buffer.readLine())!=null){
-                    String substr_line="";
-                    if(line.startsWith(line_sum1)==true){
+            while ((line = buffer.readLine()) != null) {
+                String substr_line = "";
+                String line4 = (String) box3.getSelectedItem();
+                String line5 = (String) box4.getSelectedItem();
+                String line_sum1 = line4 + " " + line5;
 
-                        lbl1.setText("Показания за "+line);
-                        System.out.println(line);
-                    }
+                if (line.startsWith(line_sum1) == true) {
 
+                    lbl1.setText("Показания за : " + " " + line);
+                    System.out.println(line);
                 }
-                buffer.close();
-            }
-
-            catch (IOException e){
-                System.out.println("Ошибка чтения.");
 
             }
-
+            buffer.close();
+        }
+        catch (IOException e) {
+            System.out.println("Ошибка чтения.");
 
         }
     }
+
+
+
+
 
     public static void main(String[] args) {
 
