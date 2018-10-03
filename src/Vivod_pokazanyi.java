@@ -157,7 +157,7 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
         String   line2=(String)box1.getSelectedItem();//Выбор месяца
         String line3=(String)box2.getSelectedItem();//Выбор года
         String line1=(String)field.getText();       //строка вводимая пользователем
-        String line_sum=(String)"\n"+line2+" "+line3+" "+line1;//строка месяц, год, показания
+        String line_sum=(String)"\n"+line2+" "+line3+" "+" - "+line1;//строка месяц, год, показания
 
 
         if(event.getSource()==btn1){

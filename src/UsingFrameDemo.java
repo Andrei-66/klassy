@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-//Класс для реализации окна ввода текста
+/*Класс для реализации окна ввода текста
 class TextInputFrame implements ActionListener{
     //Cсылка на обьект окна
     private JFrame frame;
@@ -28,3 +28,4 @@ public class UsingFrameDemo {
     }
 }
 }
+*/
