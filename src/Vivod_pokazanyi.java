@@ -145,11 +145,7 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
         contantPane.add(grid);
 
 
-
-
-        setVisible(true);
-
-    }
+        setVisible(true);    }
 
     public void actionPerformed(ActionEvent event){
 
@@ -210,11 +206,7 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
         catch (IOException e) {
             System.out.println("Ошибка чтения.");
 
-        }
-    }
-
-
-
+        }  }
 
 
     public static void main(String[] args) {
