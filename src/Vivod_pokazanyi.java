@@ -151,31 +151,29 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
 
     }
 
-    public void actionPerformed(ActionEvent event){
+    public void actionPerformed(ActionEvent event) {
 
-        String file="E:\\data\\data.txt";
-        String   line2=(String)box1.getSelectedItem();//Выбор месяца
-        String line3=(String)box2.getSelectedItem();//Выбор года
-        String line1=(String)field.getText();       //строка вводимая пользователем
-        String line_sum=(String)"\n"+line2+" "+line3+" "+line1;//строка месяц, год, показания
+        String file = "E:\\data\\data.txt";
+        String line2 = (String) box1.getSelectedItem();//Выбор месяца
+        String line3 = (String) box2.getSelectedItem();//Выбор года
+        String line1 = (String) field.getText();       //строка вводимая пользователем
+        String line_sum = (String) "\n" + line2 + " " + line3 + " " + " - " + line1;//строка месяц, год, показания
 
 
-        if(event.getSource()==btn1){
-            int dlina_stroki=field.getText().length();
+        if (event.getSource() == btn1) {
+            int dlina_stroki = field.getText().length();
 
-            if(dlina_stroki<1)
-            {JOptionPane.showMessageDialog(null,"Введите показания счетчика!"); }
-
-            else{
+            if (dlina_stroki < 1) {
+                JOptionPane.showMessageDialog(null, "Введите показания счетчика!");
+            } else {
 
                 try {
                     FileWriter fileW = new FileWriter(file, true);
                     BufferedWriter bufferW = new BufferedWriter(fileW);
                     bufferW.write(line_sum);
                     bufferW.close();
-                }
-                catch (IOException e) {
-                    System.out.println("ошибка записи файла!");
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(null, "Ошибка записи файла!");
 
                 }
 
@@ -183,9 +181,10 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
 
         }
 
-        if(event.getSource()==btn2){
+        if (event.getSource() == btn2) {
 
-        System.out.println(line_sum);}
+            System.out.println(line_sum);
+
 
         try {
             String line = "";
@@ -207,11 +206,13 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
             }
             buffer.close();
         }
-        catch (IOException e) {
-            System.out.println("Ошибка чтения.");
+         catch (IOException e) {
+             JOptionPane.showMessageDialog(null,"Ошибка чтения файла!");
 
         }
+        }
     }
+
 
 
 
