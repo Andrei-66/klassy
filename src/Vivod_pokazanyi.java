@@ -26,6 +26,7 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
     JLabel lbl_3=new JLabel(" Нажмите \"вывести\" для просмотра ");
     Font font=new Font("Serif",Font.BOLD,24);
     Font font1=new Font("Serif",Font.ITALIC,22);
+    String line1=new String();
 
 
     String[] month={"январь","февраль","март","апрель","май","июнь","июль",
@@ -35,6 +36,7 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
     String[] month1={"январь","февраль","март","апрель","май","июнь","июль",
             "август","сентябрь","октябрь","ноябрь","декабрь"};
     String[] years1={"2011","2012","2013","2014","2015", "2016", "2017"};
+
 
 
     JCheckBox mchk1=new JCheckBox(month[0]);
@@ -102,6 +104,8 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
         box1.setAlignmentX(CENTER_ALIGNMENT);
         lbl.setOpaque(true);
 
+
+
         btn1.addActionListener(this);
         btn2.addActionListener(this);
 
@@ -128,11 +132,13 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
 
         grid.add(box1);
         grid.add(field);
+
         grid.add(box2);
         grid.add(btn1);
 
         grid.add(lbl_1);
         grid.add(lbl_3);
+        
         grid.add(box3);
         grid.add(btn2);
 
@@ -169,19 +175,20 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
                     BufferedWriter bufferW = new BufferedWriter(fileW);
                     bufferW.write(line_sum);
                     bufferW.close();
+                    JOptionPane.showMessageDialog(null,"Показания счетчика успешно занесены в базу данных!");
+
+
                 }
                 catch (IOException e) {
                     System.out.println("ошибка записи файла!");
 
                 }
-
             }
-
         }
 
         if(event.getSource()==btn2){
 
-        System.out.println(line_sum);}
+        System.out.println(line_sum);
 
         try {
             String line = "";
@@ -206,7 +213,10 @@ public class Vivod_pokazanyi extends JFrame implements ActionListener
         catch (IOException e) {
             System.out.println("Ошибка чтения.");
 
-        }  }
+        }
+        }
+
+    }
 
 
     public static void main(String[] args) {
