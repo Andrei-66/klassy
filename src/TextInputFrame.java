@@ -80,9 +80,65 @@ class TextInputFrame implements ActionListener {
                 frame.setLayout(null);
                 enter=new JLabel(msg,JLabel.LEFT);
                 enter.setBounds(10,10,width-20,height/6);
+                tf=new JTextField(frame.getWidth()-20);
+                //Положение и разьер текстового поля ввода
+                tf.setBounds(10,enter.getHeight()+5,enter.getWidth(),height/6);
+
+                //ПОЛОЖЕНИЕ И РАЗМЕР КНОПКИ
+                btYes=new JButton("Подтвеждаю");
+                btYes.setBounds(10,height/2+10,(width-30)/2,height/6);
+                //Отмена режима отображения рамки фокуса в кнопке
+                btYes.setFocusPainted(false);
+                btNo=new JButton("Завершить");
+                btNo.setBounds((width-30)/2+18,height/2+10,(width-30)/2,height/6);
+                btNo.setFocusPainted(false);
+                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                //Добавление в окно текстовой метки
+                frame.add(enter);
+                frame.add(tf);
+                frame.add(btYes);
+                frame.add(btNo);
+                frame.setResizable(false);
+                //Регистрация щелчка в кнопке отметы
+                btYes.addActionListener(this);
+                btNo.addActionListener(this);
+
+                //Отображение окна
+                frame.setVisible(true);
+
+
+
 
             }
 
+            public void ActionPerformed(ActionEvent ae){
+                //Считывание текста нажатой кнщпки
+                String btName=ae.getActionCommand();
+                if(btName.equalsIgnoreCase(btYes.getText())){
+                    name=tf.getText();
+                    //Окно с текстовым полем убирается с экрана
+                    frame.setVisible(false);
+                    IntInputFrame.show("Сколько Вам лет?");
+                }
+                else System.exit(0);
+            }
+
+            //Метод отображения окна
+            static void show(String txt){
+                //Создание анонимного обьекта
+                new TextInputFrame(txt);
+
+            }
+
+
+
+
+        }
+    }
+
+        //Класс реализации окна для ввода целого числа
+
+        class IntInputFrame implements ActionListener, KeyListener){
 
         }
 
@@ -90,5 +146,5 @@ class TextInputFrame implements ActionListener {
 
 
 
-    }
+
 }
